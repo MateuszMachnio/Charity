@@ -15,4 +15,6 @@ public interface DonationService {
     void deleteDonation(long id);
 
     List<Donation> findAllDonations();
+
+    Long quantityOfDonations();
 }

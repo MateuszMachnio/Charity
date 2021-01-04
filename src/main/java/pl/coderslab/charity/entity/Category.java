@@ -2,6 +2,7 @@ package pl.coderslab.charity.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -13,7 +14,8 @@ public class Category {
     private Long id;
 
     @NotBlank
-    @Column(nullable = false, unique = true)
+    @Size(min = 3, max = 50)
+    @Column(nullable = false, unique = true, length = 50)
     private String name;
 
     public Long getId() {

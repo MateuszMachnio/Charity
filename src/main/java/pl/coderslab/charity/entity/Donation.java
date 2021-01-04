@@ -31,6 +31,8 @@ public class Donation {
 
     private String zipCode;
 
+    private String phoneNumber;
+
     private LocalDate pickUpDate;
 
     private LocalTime pickUpTime;

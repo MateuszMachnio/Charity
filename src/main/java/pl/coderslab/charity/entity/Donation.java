@@ -22,7 +22,7 @@ public class Donation {
     private Set<Category> categories = new HashSet<>();
 
     @ManyToOne
-    @Column(name = "institution_id")
+    @JoinColumn(name = "institution_id")
     private Institution institution;
 
     private String street;

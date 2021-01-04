@@ -46,4 +46,9 @@ public class DonationServiceImpl implements DonationService {
     public Long quantityOfDonations() {
         return donationRepository.count();
     }
+
+    @Override
+    public Long sumOfBags() {
+        return donationRepository.sumOfBags();
+    }
 }

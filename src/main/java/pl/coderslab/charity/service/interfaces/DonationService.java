@@ -17,4 +17,6 @@ public interface DonationService {
     List<Donation> findAllDonations();
 
     Long quantityOfDonations();
+
+    Long sumOfBags();
 }

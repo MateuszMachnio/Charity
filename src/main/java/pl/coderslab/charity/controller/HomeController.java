@@ -24,6 +24,7 @@ public class HomeController {
     public String homeAction(Model model){
         model.addAttribute("institutions", new TreeSet<>(institutionService.findAllInstitutions()));
         model.addAttribute("donationsQuantity", donationService.quantityOfDonations());
+        model.addAttribute("sumOfBags", donationService.sumOfBags());
         return "index";
     }
 }

@@ -187,7 +187,13 @@ document.addEventListener("DOMContentLoaded", function() {
         const checkedInstitution = form.querySelector("[name=institution]:checked").parentElement.querySelector("div.title").innerText;
         form.querySelector("#institutionSummary").innerText = "Dla: " + checkedInstitution;
 
-
+        form.querySelector("#streetSummary").innerText = form.querySelector("#street").value;
+        form.querySelector("#citySummary").innerText = form.querySelector("#city").value;
+        form.querySelector("#zipSummary").innerText = form.querySelector("#zipCode").value;
+        form.querySelector("#phoneSummary").innerText = form.querySelector("#phoneNumber").value;
+        form.querySelector("#dateSummary").innerText = form.querySelector("#pickUpDate").value;
+        form.querySelector("#timeSummary").innerText = form.querySelector("#pickUpTime").value;
+        form.querySelector("#commentSummary").innerText = form.querySelector("#pickUpComment").value;
       }
 
     }

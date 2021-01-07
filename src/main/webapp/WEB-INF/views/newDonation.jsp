@@ -134,7 +134,7 @@
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
                             <label>
-                                Ulica
+                                Ulica i numer <br />domu/mieszkania
                                 <form:input path="street"/>
                             </label>
                         </div>

@@ -163,10 +163,37 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      // TODO: get data from inputs and show them in summary
+      if (this.currentStep === 5) {
+        const quantity = Number(form.querySelector("#quantity").value);
+        const categories = form.querySelectorAll("[name=categories]:checked");
+        let checkedCategories = "";
+        categories.forEach((category, index) => {
+            if (index > 0) {
+              checkedCategories += ", "
+            }
+            checkedCategories += category.parentElement.querySelector("span.description").innerText;
+        });
+        const content = ", Zawartość: " + checkedCategories;
+        let variant;
+        if (quantity === 1) {
+          variant = " worek";
+        } else if (quantity > 1 && quantity < 5) {
+          variant = " worki";
+        } else {
+          variant = " worków";
+        }
+        form.querySelector("#quantitySummary").innerText = quantity + variant + content;
+
+        const checkedInstitution = form.querySelector("[name=institution]:checked").parentElement.querySelector("div.title").innerText;
+        form.querySelector("#institutionSummary").innerText = "Dla: " + checkedInstitution;
+
+
+      }
+
     }
 
   }
+
   const form = document.querySelector(".form--steps");
   if (form !== null) {
     new FormSteps(form);

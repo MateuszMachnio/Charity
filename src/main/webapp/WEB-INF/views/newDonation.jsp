@@ -90,7 +90,7 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <form:input type="number" step="1" min="1" path="quantity"/>
+                        <form:input type="number" step="1" min="1" path="quantity" value="1"/>
                     </label>
                 </div>
 
@@ -201,15 +201,15 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text"
-                                >4 worki ubrań w dobrym stanie dla dzieci</span
+                                <span class="summary--text" id="quantitySummary"
+                                ></span
                                 >
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text"
-                                >Dla fundacji "Mam marzenie" w Warszawie</span
+                                <span class="summary--text" id="institutionSummary"
+                                ></span
                                 >
                             </li>
                         </ul>

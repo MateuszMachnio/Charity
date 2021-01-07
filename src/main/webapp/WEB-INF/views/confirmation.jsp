@@ -1,16 +1,25 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: machn
-  Date: 07.01.2021
-  Time: 22:52
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html lang="pl">
 <head>
-    <title>$Title$</title>
+    <%@include file="constantParts/head.jsp"%>
+
+    <title>Potwierdzenie przekazania daru</title>
 </head>
 <body>
-$END$
+<header class="header--form-page">
+    <%@include file="constantParts/loggedUserHeader.jsp"%>
+
+    <div class="slogan container container--90">
+        <h2>
+            Dziękujemy za przesłanie formularza. Na maila prześlemy szczegóły odbioru.
+        </h2>
+    </div>
+</header>
+
+<%@include file="constantParts/footer.jsp"%>
+
+<script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
 </html>

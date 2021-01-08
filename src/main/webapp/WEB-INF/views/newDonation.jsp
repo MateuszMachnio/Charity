@@ -219,19 +219,19 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li id="streetSummary">Prosta 51</li>
-                                <li id="citySummary">Warszawa</li>
-                                <li id="zipSummary">99-098</li>
-                                <li id="phoneSummary">123 456 789</li>
+                                <li id="streetSummary"></li>
+                                <li id="citySummary"></li>
+                                <li id="zipSummary"></li>
+                                <li id="phoneSummary"></li>
                             </ul>
                         </div>
 
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li id="dateSummary">13/12/2018</li>
-                                <li id="timeSummary">15:40</li>
-                                <li id="commentSummary">Brak uwag</li>
+                                <li id="dateSummary"></li>
+                                <li id="timeSummary"></li>
+                                <li id="commentSummary"></li>
                             </ul>
                         </div>
                     </div>

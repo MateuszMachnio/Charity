@@ -94,22 +94,16 @@
         <ul class="help--slides-items">
 
             <c:forEach items="${institutions}" var="institution" varStatus="status">
-                <c:choose>
-                    <c:when test="${status.index%2 == 0}">
+                <c:if test="${status.index%2 == 0}">
                     <li>
-                        <div class="col">
-                            <div class="title">${institution.name}</div>
-                            <div class="subtitle">Cel i misja: ${institution.description}</div>
-                        </div>
-                    </c:when>
-                    <c:otherwise>
-                        <div class="col">
-                            <div class="title">${institution.name}</div>
-                            <div class="subtitle">Cel i misja: ${institution.description}</div>
-                        </div>
+                </c:if>
+                <div class="col">
+                    <div class="title">${institution.name}</div>
+                    <div class="subtitle">Cel i misja: ${institution.description}</div>
+                </div>
+                <c:if test="${status.index%2 == 1}">
                     </li>
-                    </c:otherwise>
-                </c:choose>
+                </c:if>
             </c:forEach>
 
         </ul>

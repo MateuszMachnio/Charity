@@ -163,17 +163,19 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
+      //todo
       if (this.currentStep === 5) {
         const quantity = Number(form.querySelector("#quantity").value);
-        const categories = form.querySelectorAll("[name=categories]:checked");
-        let checkedCategories = "";
-        categories.forEach((category, index) => {
-            if (index > 0) {
-              checkedCategories += ", "
-            }
-            checkedCategories += category.parentElement.querySelector("span.description").innerText;
-        });
-        const content = ", Zawartość: " + checkedCategories;
+        const categories = form.querySelectorAll("[name=categories]:checked ~ .description").innerText;
+        const checkedCategories = [...categories].join(", ");
+        // let checkedCategories = "";
+        // categories.forEach((category, index) => {
+        //     if (index > 0) {
+        //       checkedCategories += ", "
+        //     }
+        //     checkedCategories += category.parentElement.querySelector("span.description").innerText;
+        // });
+        const content = ". Zawartość: " + checkedCategories;
         let variant;
         if (quantity === 1) {
           variant = " worek";
@@ -197,6 +199,8 @@ document.addEventListener("DOMContentLoaded", function() {
       }
 
     }
+
+
 
   }
 

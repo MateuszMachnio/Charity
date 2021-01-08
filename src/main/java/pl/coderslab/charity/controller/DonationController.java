@@ -15,6 +15,7 @@ import pl.coderslab.charity.service.interfaces.DonationService;
 import pl.coderslab.charity.service.interfaces.InstitutionService;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -33,13 +34,13 @@ public class DonationController {
     }
 
     @ModelAttribute("institutions")
-    public Set<Institution> getInstitutions() {
-        return new TreeSet<>(institutionService.findAllInstitutions());
+    public List<Institution> getInstitutions() {
+        return institutionService.findAllInstitutions();
     }
 
     @ModelAttribute("categories")
-    public Set<Category> getCategories() {
-        return new TreeSet<>(categoryService.findAllCategories());
+    public List<Category> getCategories() {
+        return categoryService.findAllCategories();
     }
 
     @GetMapping("/new")

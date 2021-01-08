@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "institutions")
-public class Institution implements Comparable<Institution> {
+public class Institution {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,8 +68,4 @@ public class Institution implements Comparable<Institution> {
                 '}';
     }
 
-    @Override
-    public int compareTo(Institution institution) {
-        return this.name.compareToIgnoreCase(institution.name);
-    }
 }

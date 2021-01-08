@@ -39,6 +39,6 @@ public class InstitutionServiceImpl implements InstitutionService {
 
     @Override
     public List<Institution> findAllInstitutions() {
-        return institutionRepository.findAll();
+        return institutionRepository.getAllByOrderByName();
     }
 }

@@ -163,7 +163,11 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      //todo
+      this.fillInTheSummary();
+
+    }
+
+    fillInTheSummary() {
       if (this.currentStep === 5) {
         const quantity = Number(form.querySelector("#quantity").value);
         const categories = form.querySelectorAll("[name=categories]:checked ~ .description");
@@ -194,11 +198,7 @@ document.addEventListener("DOMContentLoaded", function() {
         form.querySelector("#timeSummary").innerText = form.querySelector("#pickUpTime").value;
         form.querySelector("#commentSummary").innerText = form.querySelector("#pickUpComment").value;
       }
-
     }
-
-
-
   }
 
   const form = document.querySelector(".form--steps");

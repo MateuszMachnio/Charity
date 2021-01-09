@@ -166,16 +166,13 @@ document.addEventListener("DOMContentLoaded", function() {
       //todo
       if (this.currentStep === 5) {
         const quantity = Number(form.querySelector("#quantity").value);
-        const categories = form.querySelectorAll("[name=categories]:checked ~ .description").innerText;
-        const checkedCategories = [...categories].join(", ");
-        // let checkedCategories = "";
-        // categories.forEach((category, index) => {
-        //     if (index > 0) {
-        //       checkedCategories += ", "
-        //     }
-        //     checkedCategories += category.parentElement.querySelector("span.description").innerText;
-        // });
-        const content = ". Zawartość: " + checkedCategories;
+        const categories = form.querySelectorAll("[name=categories]:checked ~ .description");
+        let categoriesInnerText = [];
+        categories.forEach(category => {
+          categoriesInnerText.push(category.innerText);
+        });
+        const checkedCategoriesInnerText = categoriesInnerText.join(", ");
+        const content = ". Zawartość: " + checkedCategoriesInnerText;
         let variant;
         if (quantity === 1) {
           variant = " worek";

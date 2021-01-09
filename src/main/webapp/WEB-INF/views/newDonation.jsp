@@ -78,6 +78,10 @@
                     </div>
                 </c:forEach>
 
+                <div class="error">
+                    Proszę zaznaczyć przynajmniej jedną kategorię.
+                </div>
+
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
                 </div>

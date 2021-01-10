@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$next.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
-          if (this.validationOfTheStep1(btn)) {
+          if (this.validationOfTheStep1(btn) && this.validationOfTheStep3(btn)) {
             this.currentStep++;
             this.updateForm();
           }
@@ -158,6 +158,20 @@ document.addEventListener("DOMContentLoaded", function() {
       }
       return true;
     }
+
+    validationOfTheStep3(btn) {
+      if (this.currentStep === 3) {
+        const institution = form.querySelector("[name=institution]:checked");
+        const error = btn.parentElement.parentElement.querySelector("div.error");
+        if (institution === null) {
+          error.style.display = "block";
+          return false;
+        }
+          error.style.display = "none";
+      }
+      return true;
+    }
+
     /**
      * Update form front-end
      * Show next or previous section etc.

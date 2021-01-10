@@ -123,6 +123,10 @@
                     </div>
                 </c:forEach>
 
+                <div class="error">
+                    Proszę zaznaczyć przynajmniej jedną organizację.
+                </div>
+
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
                     <button type="button" class="btn next-step">Dalej</button>

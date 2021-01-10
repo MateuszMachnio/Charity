@@ -174,9 +174,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     validationOfTheStep4(btn) {
       if (this.currentStep === 4) {
-        return this.checkField(btn, "ulicę", "#street", "#error1", /^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(\s+[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*\s+(\d+|(\d+(\/\d+)*))$/) &&
-            this.checkField(btn, "nazwę miasta", "#city", "#error2", /^([a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+|[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(\s+[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*)$/) &&
-            this.checkField(btn, "kod pocztowy", "#zipCode", "#error3", /^(\d{2}-\d{3})$/);
+        const checkStreet = this.checkField(btn, "ulicę", "#street", "#error1", /^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(\s+[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*\s+(\d+|(\d+(\/\d+)*))$/);
+        const checkCity = this.checkField(btn, "nazwę miasta", "#city", "#error2", /^([a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+|[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(\s+[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*)$/);
+        const checkZipCode = this.checkField(btn, "kod pocztowy", "#zipCode", "#error3", /^(\d{2}-\d{3})$/);
+        return checkStreet && checkCity && checkZipCode;
       }
       return true;
     }

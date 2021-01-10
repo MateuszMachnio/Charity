@@ -165,8 +165,7 @@
                                 Kod pocztowy
                                 <form:input path="zipCode"/>
                             </label>
-                            <div class="error">
-                                Proszę zaznaczyć przynajmniej jedną organizację.
+                            <div class="error" id="error3">
                             </div>
                         </div>
 

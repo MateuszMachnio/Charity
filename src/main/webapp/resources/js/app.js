@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     validationOfTheStep4(btn) {
       if (this.currentStep === 4) {
-        return this.checkStreet(btn) && this.checkCity(btn);
+        return this.checkStreet(btn) && this.checkCity(btn) && this.checkZipCode(btn);
       }
       return true;
     }
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function() {
     checkStreet(btn) {
       const street = form.querySelector("#street").value;
       const error = btn.parentElement.parentElement.querySelector("#error1");
-      const regex = /^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(\s+[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*\s+(\d+|(\d+(\\\d+)*))$/;        //nie działa idealnie!
+      const regex = /^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(\s+[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*\s+(\d+|(\d+(\/\d+)*))$/;        //nie działa idealnie!
 
       if (street.length === 0) {
         error.style.display = "block";
@@ -214,6 +214,26 @@ document.addEventListener("DOMContentLoaded", function() {
       error.style.display = "none";
       return true;
     }
+
+    checkZipCode(btn) {
+      const zipCode = form.querySelector("#zipCode").value;
+      const error = btn.parentElement.parentElement.querySelector("#error3");
+      const regex = /^(\d{2}-\d{3})$/;
+
+      if (zipCode.length === 0) {
+        error.style.display = "block";
+        btn.parentElement.parentElement.querySelector("#error3").innerText = "Proszę uzupełnić pole.";
+        return false;
+      } else if (!regex.test(zipCode)) {
+        error.style.display = "block";
+        btn.parentElement.parentElement.querySelector("#error3").innerText = "Proszę wpisać poprawnie kod pocztowy.";
+        return false;
+      }
+      error.style.display = "none";
+      return true;
+    }
+
+    checkField(fieldName, errorSelector, )
 
     /**
      * Update form front-end

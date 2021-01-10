@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function() {
     checkStreet(btn) {
       const street = form.querySelector("#street").value;
       const error = btn.parentElement.parentElement.querySelector("#error1");
-      const regex = /^[a-zA-Z]+(\s+[a-zA-Z]+)*\s+\d+(\\\d+)*$/;        //nie działa idealnie!
+      const regex = /^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(\s+[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*\s+(\d+|(\d+(\\\d+)*))$/;        //nie działa idealnie!
 
       if (street.length === 0) {
         error.style.display = "block";
@@ -199,16 +199,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     checkCity(btn) {
       const city = form.querySelector("#city").value;
-      const error = btn.parentElement.parentElement.querySelector("#error1");
-      const regex = /^[a-zA-Z]+(\s+[a-zA-Z]+)*\s+\d+(\\\d+)*$/;        //nie działa idealnie!
+      const error = btn.parentElement.parentElement.querySelector("#error2");
+      const regex = /^([a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+|[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(\s+[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*)$/;
 
-      if (street.length === 0) {
+      if (city.length === 0) {
         error.style.display = "block";
-        btn.parentElement.parentElement.querySelector("#error1").innerText = "Proszę uzupełnić pole.";
+        btn.parentElement.parentElement.querySelector("#error2").innerText = "Proszę uzupełnić pole.";
         return false;
-      } else if (!regex.test(street)) {
+      } else if (!regex.test(city)) {
         error.style.display = "block";
-        btn.parentElement.parentElement.querySelector("#error1").innerText = "Proszę wpisać poprawnie ulicę.";
+        btn.parentElement.parentElement.querySelector("#error2").innerText = "Proszę wpisać poprawnie nazwę miasta.";
         return false;
       }
       error.style.display = "none";

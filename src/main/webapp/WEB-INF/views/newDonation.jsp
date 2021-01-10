@@ -156,8 +156,7 @@
                                 Miasto
                                 <form:input path="city"/>
                             </label>
-                            <div class="error">
-                                Proszę zaznaczyć przynajmniej jedną organizację.
+                            <div class="error" id="error2">
                             </div>
                         </div>
 

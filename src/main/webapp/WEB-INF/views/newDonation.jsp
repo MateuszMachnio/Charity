@@ -154,7 +154,7 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 Miasto
-                                <form:input path="city"/>
+                                <form:input path="city" placeholder="np. Warszawa"/>
                             </label>
                             <div class="error" id="error2">
                             </div>
@@ -163,7 +163,7 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 Kod pocztowy
-                                <form:input path="zipCode"/>
+                                <form:input path="zipCode" placeholder="np. 00-000"/>
                             </label>
                             <div class="error" id="error3">
                             </div>

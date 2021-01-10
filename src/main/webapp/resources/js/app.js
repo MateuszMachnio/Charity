@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$next.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
-          if (this.validationOfTheStep1(btn) && this.validationOfTheStep3(btn)) {
+          if (this.validationOfTheStep1(btn) && this.validationOfTheStep3(btn) && this.validationOfTheStep4(btn)) {
             this.currentStep++;
             this.updateForm();
           }
@@ -169,6 +169,49 @@ document.addEventListener("DOMContentLoaded", function() {
         }
           error.style.display = "none";
       }
+      return true;
+    }
+
+    validationOfTheStep4(btn) {
+      if (this.currentStep === 4) {
+        return this.checkStreet(btn) && this.checkCity(btn);
+      }
+      return true;
+    }
+
+    checkStreet(btn) {
+      const street = form.querySelector("#street").value;
+      const error = btn.parentElement.parentElement.querySelector("#error1");
+      const regex = /^[a-zA-Z]+(\s+[a-zA-Z]+)*\s+\d+(\\\d+)*$/;        //nie działa idealnie!
+
+      if (street.length === 0) {
+        error.style.display = "block";
+        btn.parentElement.parentElement.querySelector("#error1").innerText = "Proszę uzupełnić pole.";
+        return false;
+      } else if (!regex.test(street)) {
+        error.style.display = "block";
+        btn.parentElement.parentElement.querySelector("#error1").innerText = "Proszę wpisać poprawnie ulicę.";
+        return false;
+      }
+      error.style.display = "none";
+      return true;
+    }
+
+    checkCity(btn) {
+      const city = form.querySelector("#city").value;
+      const error = btn.parentElement.parentElement.querySelector("#error1");
+      const regex = /^[a-zA-Z]+(\s+[a-zA-Z]+)*\s+\d+(\\\d+)*$/;        //nie działa idealnie!
+
+      if (street.length === 0) {
+        error.style.display = "block";
+        btn.parentElement.parentElement.querySelector("#error1").innerText = "Proszę uzupełnić pole.";
+        return false;
+      } else if (!regex.test(street)) {
+        error.style.display = "block";
+        btn.parentElement.parentElement.querySelector("#error1").innerText = "Proszę wpisać poprawnie ulicę.";
+        return false;
+      }
+      error.style.display = "none";
       return true;
     }
 

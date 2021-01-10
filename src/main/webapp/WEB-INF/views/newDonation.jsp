@@ -143,15 +143,22 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 Ulica i numer <br />domu/mieszkania
-                                <form:input path="street"/>
+                                <form:input path="street" placeholder="np. Tetmajera 10/3"/>
                             </label>
+                            <div class="error" id="error1">
+                            </div>
                         </div>
+
+
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Miasto
                                 <form:input path="city"/>
                             </label>
+                            <div class="error">
+                                Proszę zaznaczyć przynajmniej jedną organizację.
+                            </div>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -159,6 +166,9 @@
                                 Kod pocztowy
                                 <form:input path="zipCode"/>
                             </label>
+                            <div class="error">
+                                Proszę zaznaczyć przynajmniej jedną organizację.
+                            </div>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -166,6 +176,9 @@
                                 Numer telefonu
                                 <form:input path="phoneNumber"/>
                             </label>
+                            <div class="error">
+                                Proszę zaznaczyć przynajmniej jedną organizację.
+                            </div>
                         </div>
                     </div>
 
@@ -176,6 +189,9 @@
                                 Data
                                 <form:input type="date" path="pickUpDate"/>
                             </label>
+                            <div class="error">
+                                Proszę zaznaczyć przynajmniej jedną organizację.
+                            </div>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -183,6 +199,9 @@
                                 Godzina
                                 <form:input type="time" path="pickUpTime"/>
                             </label>
+                            <div class="error">
+                                Proszę zaznaczyć przynajmniej jedną organizację.
+                            </div>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -190,6 +209,9 @@
                                 Uwagi dla kuriera
                                 <form:textarea path="pickUpComment" rows="5"/>
                             </label>
+                            <div class="error">
+                                Proszę zaznaczyć przynajmniej jedną organizację.
+                            </div>
                         </div>
                     </div>
                 </div>

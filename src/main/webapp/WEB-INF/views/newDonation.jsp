@@ -175,7 +175,6 @@
                                 <form:input path="phoneNumber"/>
                             </label>
                             <div class="error" id="error4">
-                                Proszę zaznaczyć przynajmniej jedną organizację.
                             </div>
                         </div>
                     </div>
@@ -187,8 +186,7 @@
                                 Data
                                 <form:input type="date" path="pickUpDate"/>
                             </label>
-                            <div class="error">
-                                Proszę zaznaczyć przynajmniej jedną organizację.
+                            <div class="error" id="error5">
                             </div>
                         </div>
 
@@ -197,8 +195,7 @@
                                 Godzina
                                 <form:input type="time" path="pickUpTime"/>
                             </label>
-                            <div class="error">
-                                Proszę zaznaczyć przynajmniej jedną organizację.
+                            <div class="error" id="error6">
                             </div>
                         </div>
 

@@ -178,7 +178,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const checkCity = this.checkField(btn, "nazwę miasta", "#city", "#error2", /^([a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+|[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(\s+[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*)$/);
         const checkZipCode = this.checkField(btn, "kod pocztowy", "#zipCode", "#error3", /^(\d{2}-\d{3})$/);
         const checkPhone = this.checkField(btn, "numer telefonu (9 cyfr bez spacji)", "#phoneNumber", "#error4", /^\d{9}$/);
-        return checkStreet && checkCity && checkZipCode;
+        const checkDate = this.checkDate(btn, "#pickUpDate", "#error5");
+        const checkTime = this.checkTime(btn, "#pickUpTime", "#error6");
+        return checkStreet && checkCity && checkZipCode && checkPhone && checkDate && checkTime;
       }
       return true;
     }
@@ -198,6 +200,42 @@ document.addEventListener("DOMContentLoaded", function() {
       error.style.display = "none";
       return true;
     }
+
+    checkDate(button, fieldSelector, errorSelector) {
+      const field = form.querySelector(fieldSelector).value;
+      const error = button.parentElement.parentElement.querySelector(errorSelector);
+      if (field.length === 0) {
+        error.style.display = "block";
+        button.parentElement.parentElement.querySelector(errorSelector).innerText = "Proszę uzupełnić pole.";
+        return false;
+      } else if (!this.checkDateIsInPeriod(field)) {
+        error.style.display = "block";
+        button.parentElement.parentElement.querySelector(errorSelector).innerHTML = "Proszę wpisać poprawnie datę<br />(odbiór można zaplanować najszybciej na jutro, najpóźniej za miesiąc)";
+        return false;
+      }
+      error.style.display = "none";
+      return true;
+    }
+
+    checkDateIsInPeriod(checkingDate) {
+      const date = new Date(checkingDate);
+      let now = new Date();
+      now.setHours(0);
+      now.setMinutes(0);
+      now.setSeconds(0);
+      let tomorrow = new Date(now.getTime());
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      let inAMonth = new Date(now.getTime());
+      inAMonth.setDate(inAMonth.getDate() + 30);
+      console.log(checkingDate);
+      console.log(date);
+      console.log(now);
+      console.log(tomorrow);
+      console.log(inAMonth);
+      return date >= tomorrow && date <= inAMonth;
+    }
+
+
 
     /**
      * Update form front-end

@@ -209,9 +209,6 @@
                                 Uwagi dla kuriera
                                 <form:textarea path="pickUpComment" rows="5"/>
                             </label>
-                            <div class="error">
-                                Proszę zaznaczyć przynajmniej jedną organizację.
-                            </div>
                         </div>
                     </div>
                 </div>

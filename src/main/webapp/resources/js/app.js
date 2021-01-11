@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const error = button.parentElement.parentElement.querySelector(errorSelector);
       if (field.length === 0) {
         error.style.display = "block";
-        button.parentElement.parentElement.querySelector(errorSelector).innerText = "Proszę uzupełnić pole.";
+        button.parentElement.parentElement.querySelector(errorSelector).innerText = "Proszę uzupełnić pole";
         return false;
       } else if (!regExp.test(field)) {
         error.style.display = "block";
@@ -206,11 +206,15 @@ document.addEventListener("DOMContentLoaded", function() {
       const error = button.parentElement.parentElement.querySelector(errorSelector);
       if (field.length === 0) {
         error.style.display = "block";
-        button.parentElement.parentElement.querySelector(errorSelector).innerText = "Proszę uzupełnić pole.";
+        button.parentElement.parentElement.querySelector(errorSelector).innerText = "Proszę uzupełnić pole";
         return false;
       } else if (!this.checkDateIsInPeriod(field)) {
         error.style.display = "block";
         button.parentElement.parentElement.querySelector(errorSelector).innerHTML = "Proszę wpisać poprawnie datę<br />(odbiór można zaplanować najszybciej na jutro, najpóźniej za miesiąc)";
+        return false;
+      } else if (this.checkDateIsTheWeekend(field)) {
+        error.style.display = "block";
+        button.parentElement.parentElement.querySelector(errorSelector).innerHTML = "Niestety kurierzy nie pracują w weekend";
         return false;
       }
       error.style.display = "none";
@@ -228,6 +232,11 @@ document.addEventListener("DOMContentLoaded", function() {
       let inAMonth = new Date(now.getTime());
       inAMonth.setDate(inAMonth.getDate() + 30);
       return date >= tomorrow && date <= inAMonth;
+    }
+
+    checkDateIsTheWeekend(checkingDate) {
+      const date = new Date(checkingDate);
+      return date.getDay() === 0 || date.getDay() === 6;
     }
 
     checkTime(button, fieldSelector, errorSelector) {

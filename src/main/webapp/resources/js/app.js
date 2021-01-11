@@ -227,15 +227,46 @@ document.addEventListener("DOMContentLoaded", function() {
       tomorrow.setDate(tomorrow.getDate() + 1);
       let inAMonth = new Date(now.getTime());
       inAMonth.setDate(inAMonth.getDate() + 30);
-      console.log(checkingDate);
-      console.log(date);
-      console.log(now);
-      console.log(tomorrow);
-      console.log(inAMonth);
       return date >= tomorrow && date <= inAMonth;
     }
 
+    checkTime(button, fieldSelector, errorSelector) {
+      const field = form.querySelector(fieldSelector).value;
+      console.log(field);
+      const error = button.parentElement.parentElement.querySelector(errorSelector);
+      if (field.length === 0) {
+        error.style.display = "block";
+        button.parentElement.parentElement.querySelector(errorSelector).innerText = "Proszę uzupełnić pole.";
+        return false;
+      } else if (!this.checkTimeIsInPeriod(field)) {
+        error.style.display = "block";
+        button.parentElement.parentElement.querySelector(errorSelector).innerHTML = "Proszę wpisać poprawnie godzinę<br />(odbiór można zaplanować pomiędzy 8-18)";
+        return false;
+      }
+      error.style.display = "none";
+      return true;
+    }
 
+    checkTimeIsInPeriod(checkingTime) {
+      let date = new Date();
+      const hours = checkingTime.toString().substring(0, 2);
+      const minutes = checkingTime.toString().substring(3, 5);
+      date.setHours(hours);
+      date.setMinutes(minutes);
+      date.setSeconds(0);
+      let hourOfTheFirstPickUp = new Date();
+      hourOfTheFirstPickUp.setHours(8);
+      hourOfTheFirstPickUp.setMinutes(0);
+      hourOfTheFirstPickUp.setSeconds(0);
+      let hourOfTheLastPickUp = new Date();
+      hourOfTheLastPickUp.setHours(18);
+      hourOfTheLastPickUp.setMinutes(0);
+      hourOfTheLastPickUp.setSeconds(0);
+      console.log(date);
+      console.log(hourOfTheFirstPickUp);
+      console.log(hourOfTheLastPickUp);
+      return date >= hourOfTheFirstPickUp && date <= hourOfTheLastPickUp;
+    }
 
     /**
      * Update form front-end

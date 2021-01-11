@@ -177,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const checkStreet = this.checkField(btn, "ulicę", "#street", "#error1", /^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(\s+[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*\s+(\d+|(\d+(\/\d+)*))$/);
         const checkCity = this.checkField(btn, "nazwę miasta", "#city", "#error2", /^([a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+|[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(\s+[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*)$/);
         const checkZipCode = this.checkField(btn, "kod pocztowy", "#zipCode", "#error3", /^(\d{2}-\d{3})$/);
+        const checkPhone = this.checkField(btn, "numer telefonu (9 cyfr bez spacji)", "#phoneNumber", "#error4", /^\d{9}$/);
         return checkStreet && checkCity && checkZipCode;
       }
       return true;

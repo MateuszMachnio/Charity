@@ -174,7 +174,7 @@
                                 Numer telefonu
                                 <form:input path="phoneNumber"/>
                             </label>
-                            <div class="error">
+                            <div class="error" id="error4">
                                 Proszę zaznaczyć przynajmniej jedną organizację.
                             </div>
                         </div>

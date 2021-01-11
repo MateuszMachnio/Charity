@@ -1,3 +1,4 @@
+<%@ page import="java.time.LocalDate" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -184,7 +185,11 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 Data
-                                <form:input type="date" path="pickUpDate"/>
+                                <% LocalDate now = LocalDate.now();
+                                LocalDate tomorrow = now.plusDays(1);
+                                LocalDate inAMonth = now.plusDays(30);
+                                %>
+                                <form:input type="date" min="<%=tomorrow%>" max="<%=inAMonth%>" value="<%=tomorrow%>" path="pickUpDate"/>
                             </label>
                             <div class="error" id="error5">
                             </div>

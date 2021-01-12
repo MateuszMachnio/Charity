@@ -222,11 +222,20 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     checkDateIsInPeriod(checkingDate) {
-      const date = new Date(checkingDate);
       let now = new Date();
       now.setHours(0);
       now.setMinutes(0);
       now.setSeconds(0);
+
+      const checkingDateString = checkingDate.toString();
+      const year = checkingDateString.substring(0, 4);
+      const month = checkingDateString.substring(5, 7);
+      const day = checkingDateString.substring(8, 10);
+      let date = new Date(now.getTime());              //problem przy walidacji następnego dnia, czy trzeba tak tu namieszać, próbowałem od razu wstawić
+      date.setFullYear(Number(year));                  //checkingDate do konstruktora i wyzerować godzinę bo się dodawało i niby w returnie date i tomorrow były takie same a zwracało false
+      date.setMonth(Number(month)-1);
+      date.setDate(Number(day));
+
       let tomorrow = new Date(now.getTime());
       tomorrow.setDate(tomorrow.getDate() + 1);
       let inAMonth = new Date(now.getTime());
@@ -260,8 +269,8 @@ document.addEventListener("DOMContentLoaded", function() {
       let date = new Date();
       const hours = checkingTime.toString().substring(0, 2);
       const minutes = checkingTime.toString().substring(3, 5);
-      date.setHours(hours);
-      date.setMinutes(minutes);
+      date.setHours(Number(hours));
+      date.setMinutes(Number(minutes));
       date.setSeconds(0);
       let hourOfTheFirstPickUp = new Date();
       hourOfTheFirstPickUp.setHours(8);

@@ -1,8 +1,13 @@
 package pl.coderslab.charity.entity;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
@@ -17,27 +22,43 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Range(min = 1, max = 20)
     private int quantity;
 
     @ManyToMany
     @JoinTable(name = "donation_categories", joinColumns = @JoinColumn(name = "donation_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "institution_id")
+    @JoinColumn(name = "institution_id", nullable = false)
     private Institution institution;
 
+    @NotBlank
+    @Size(min = 4, max = 50)
+    @Column(nullable = false, length = 50)
     private String street;
 
+    @NotBlank
+    @Size(min = 4, max = 50)
+    @Column(nullable = false, length = 50)
     private String city;
 
+    @NotBlank
+    @Size(min = 6, max = 6)
+    @Column(nullable = false, length = 6)
     private String zipCode;
 
+    @NotBlank
+    @Size(min = 9, max = 9)
+    @Column(nullable = false, length = 9)
     private String phoneNumber;
 
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
 
+    @NotNull
     private LocalTime pickUpTime;
 
     private String pickUpComment;

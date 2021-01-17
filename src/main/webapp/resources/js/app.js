@@ -147,7 +147,6 @@ document.addEventListener("DOMContentLoaded", function() {
             e.preventDefault();
             const currentStep = this.$form.querySelector("div[data-step*=\"" + this.currentStep + "\"]");
             currentStep.querySelector("button.next-step").click();
-            // input.parentElement.parentElement.parentElement.querySelector("button.next-step").click();
           }
         });
       });

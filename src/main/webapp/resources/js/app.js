@@ -141,6 +141,17 @@ document.addEventListener("DOMContentLoaded", function() {
         });
       });
 
+      this.$form.querySelectorAll("input").forEach(input => {
+        input.addEventListener("keydown", e => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            const currentStep = this.$form.querySelector("div[data-step*=\"" + this.currentStep + "\"]");
+            currentStep.querySelector("button.next-step").click();
+            // input.parentElement.parentElement.parentElement.querySelector("button.next-step").click();
+          }
+        });
+      });
+
       // Form submit
       this.$form.querySelector("form").addEventListener("submit", e => this.submit(e));
     }

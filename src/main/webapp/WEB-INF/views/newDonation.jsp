@@ -100,7 +100,7 @@
                 </div>
 
                 <div class="error">
-                    Liczba worków musi być dodatnia.
+                    Liczba worków musi być dodatnia (max 20).
                 </div>
 
                 <div class="form-group form-group--buttons">

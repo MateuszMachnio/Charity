@@ -99,6 +99,10 @@
                     </label>
                 </div>
 
+                <div class="error">
+                    Liczba worków musi być dodatnia.
+                </div>
+
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
                     <button type="button" class="btn next-step">Dalej</button>
@@ -125,7 +129,7 @@
                 </c:forEach>
 
                 <div class="error">
-                    Proszę zaznaczyć przynajmniej jedną organizację.
+                    Proszę zaznaczyć organizację której chcesz przekazać rzeczy.
                 </div>
 
                 <div class="form-group form-group--buttons">

@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$next.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
-          if (this.validationOfTheStep1(btn) && this.validationOfTheStep3(btn) && this.validationOfTheStep4(btn)) {
+          if (this.validationOfTheStep1(btn) && this.validationOfTheStep2(btn) && this.validationOfTheStep3(btn) && this.validationOfTheStep4(btn)) {
             this.currentStep++;
             this.updateForm();
           }
@@ -153,6 +153,20 @@ document.addEventListener("DOMContentLoaded", function() {
           error.style.display = "block";
           return false;
         } else if (categories.length !== 0 && error.style.display === "block") {
+          error.style.display = "none";
+        }
+      }
+      return true;
+    }
+
+    validationOfTheStep2(btn) {
+      if (this.currentStep === 2) {
+        const quantity = form.querySelector("#quantity");
+        const error = btn.parentElement.parentElement.querySelector("div.error");
+        if (quantity.value <= 0) {
+          error.style.display = "block";
+          return false;
+        } else if (quantity.value > 0 && error.style.display === "block") {
           error.style.display = "none";
         }
       }

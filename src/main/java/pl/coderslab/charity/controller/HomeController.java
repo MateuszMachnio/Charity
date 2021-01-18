@@ -1,14 +1,15 @@
 package pl.coderslab.charity.controller;
 
 import org.springframework.context.MessageSource;
+import org.springframework.security.authentication.AuthenticationTrustResolver;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.service.interfaces.DonationService;
 import pl.coderslab.charity.service.interfaces.InstitutionService;
@@ -25,12 +26,14 @@ public class HomeController {
     private final DonationService donationService;
     private final UserService userService;
     private final MessageSource messageSource;
+    private final AuthenticationTrustResolver authenticationTrustResolver;
 
-    public HomeController(InstitutionService institutionService, DonationService donationService, UserService userService, MessageSource messageSource) {
+    public HomeController(InstitutionService institutionService, DonationService donationService, UserService userService, MessageSource messageSource, AuthenticationTrustResolver authenticationTrustResolver) {
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.userService = userService;
         this.messageSource = messageSource;
+        this.authenticationTrustResolver = authenticationTrustResolver;
     }
 
     @GetMapping("/")
@@ -66,6 +69,20 @@ public class HomeController {
     public String accessDeniedPage(Model model) {
         model.addAttribute("loggedInUser", userService.getCurrentUser().getFirstName());
         return "accessDenied";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        if (isCurrentAuthenticationAnonymous()) {
+            return "login";
+        } else {
+            return "redirect:/logged-user/dashboard";
+        }
+    }
+
+    private boolean isCurrentAuthenticationAnonymous() {
+        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authenticationTrustResolver.isAnonymous(authentication);
     }
 
 }

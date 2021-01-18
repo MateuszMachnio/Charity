@@ -18,19 +18,19 @@
     <form:form modelAttribute="user">
         <div class="form-group">
             <form:input path="firstName" placeholder="Imię" required="true" />
-            <form:errors path="firstName" class="formError" />
+            <form:errors path="firstName" class="formError" element="div" />
         </div>
         <div class="form-group">
             <form:input path="lastName" placeholder="Nazwisko" required="true" />
-            <form:errors path="lastName" class="formError" />
+            <form:errors path="lastName" class="formError" element="div" />
         </div>
         <div class="form-group">
             <form:input path="email" type="email" placeholder="Email" required="true" pattern="[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.([a-zA-Z]{2,}){1}" title="Podaj prawidłowy adres email." />
-            <form:errors path="email" class="formError" />
+            <form:errors path="email" class="formError" element="div" />
         </div>
         <div class="form-group">
             <form:input path="password" type="password" placeholder="Hasło" required="true" />
-            <form:errors path="password" class="formError" />
+            <form:errors path="password" class="formError" element="div" />
         </div>
 
         <div class="form-group form-group--buttons">

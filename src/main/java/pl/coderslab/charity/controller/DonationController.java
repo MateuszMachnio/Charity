@@ -13,24 +13,25 @@ import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.service.interfaces.CategoryService;
 import pl.coderslab.charity.service.interfaces.DonationService;
 import pl.coderslab.charity.service.interfaces.InstitutionService;
+import pl.coderslab.charity.service.interfaces.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 @Controller
-@RequestMapping("/donation")
+@RequestMapping("logged-user/donation")
 public class DonationController {
 
     private final InstitutionService institutionService;
     private final CategoryService categoryService;
     private final DonationService donationService;
+    private final UserService userService;
 
-    public DonationController(InstitutionService institutionService, CategoryService categoryService, DonationService donationService) {
+    public DonationController(InstitutionService institutionService, CategoryService categoryService, DonationService donationService, UserService userService) {
         this.institutionService = institutionService;
         this.categoryService = categoryService;
         this.donationService = donationService;
+        this.userService = userService;
     }
 
     @ModelAttribute("institutions")
@@ -41,6 +42,11 @@ public class DonationController {
     @ModelAttribute("categories")
     public List<Category> getCategories() {
         return categoryService.findAllCategories();
+    }
+
+    @ModelAttribute("user")
+    public String userName() {
+        return userService.getCurrentUser().getFirstName();
     }
 
     @GetMapping("/new")

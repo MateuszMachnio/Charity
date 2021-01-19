@@ -9,11 +9,11 @@
 </head>
 <body>
 <header class="header--form-page">
-    <%@include file="constantParts/loggedUserHeader.jsp"%>
+    <%@include file="constantParts/header.jsp"%>
 
     <div class="slogan container container--90">
         <h2>
-            Rejestracja przebiegła pomyślnie. Możesz korzystać ze wszystkich funkcjonalności aplikacji.
+            Rejestracja przebiegła pomyślnie. Po <a href="<c:url value="/login"/>" class="link">zalogowaniu</a> możesz korzystać ze wszystkich funkcjonalności aplikacji.
         </h2>
     </div>
 </header>

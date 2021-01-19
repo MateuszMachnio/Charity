@@ -145,8 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
         input.addEventListener("keydown", e => {
           if (e.key === "Enter") {
             e.preventDefault();
-            const currentStep = this.$form.querySelector("div[data-step*=\"" + this.currentStep + "\"]");
-            currentStep.querySelector("button.next-step").click();
+            this.$form.querySelector("div.active .next-step").click();
           }
         });
       });

@@ -55,9 +55,8 @@ public class HomeController {
         if (result.hasErrors()) {
             return "registration";
         }
-        if(userService.findByEmail(user.getEmail()) != null){
-            FieldError error = new FieldError("user","email", messageSource.getMessage("non.unique.email", new String[]{user.getEmail()}, Locale.getDefault()));
-            result.addError(error);
+        if(userService.existsByEmail(user.getEmail())){
+            result.rejectValue("email", "non.unique.email");
             return "registration";
         }
         userService.saveUser(user);

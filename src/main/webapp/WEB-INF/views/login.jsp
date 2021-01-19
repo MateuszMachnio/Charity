@@ -18,7 +18,7 @@
     <form action="<c:url value="/login"/>" method="post">
 
         <c:if test="${param.error != null}">
-            <div class="alert-danger">Nieprawidłowy login lub hasło.</div>
+            <div class="formError" style="padding: 5px; padding-left: 15px">Nieprawidłowy login lub hasło.</div>
         </c:if>
         <c:if test="${param.logout != null}">
             <div class="alert-success">Zostałeś pomyślnie wylogowany.</div>
@@ -29,6 +29,9 @@
         </div>
         <div class="form-group">
             <input type="password" name="password" placeholder="Hasło" required />
+            <c:if test="${param.error != null}">
+                <div style="font-size: 15px; padding: 5px">Jeśli nie masz jeszcze konta, proszę <a href="<c:url value="/register"/>" class="link">zarejestruj się</a>.</div>
+            </c:if>
             <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
         </div>
 
@@ -40,9 +43,7 @@
         </div>
     </form>
 
-    <c:if test="${param.error != null}">
-        <div>Jeśli nie masz jeszcze konta, proszę <a href="<c:url value="/register"/>">zarejestruj się</a>.</div>
-    </c:if>
+
 
 </section>
 

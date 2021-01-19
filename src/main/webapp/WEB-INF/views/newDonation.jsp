@@ -11,7 +11,7 @@
 </head>
 <body>
 <header class="header--form-page">
-    <%@include file="constantParts/loggedUserHeader.jsp"%>
+    <%@include file="constantParts/header.jsp"%>
 
     <div class="slogan container container--90">
         <div class="slogan--item">

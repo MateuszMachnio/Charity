@@ -1,28 +1,28 @@
 package pl.coderslab.charity.service.interfaces;
 
 
-import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.entity.AppUser;
 
 import java.util.List;
 
 public interface UserService {
 
-    User findById(long id);
+    AppUser findById(long id);
 
-    User saveUser(User user);
+    AppUser saveUser(AppUser appUser);
 
-    void updateUser(User user);
+    void updateUser(AppUser appUser);
 
     void deleteUser(long id);
 
-    List<User> findAllUsers();
+    List<AppUser> findAllUsers();
 
     boolean existsByEmail(String email);
 
-    User findByEmail(String email);
+    AppUser findByEmail(String email);
 
     String getPrincipal();
 
-    User getCurrentUser();
+    AppUser getCurrentUser();
 
 }

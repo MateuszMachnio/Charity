@@ -7,16 +7,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.entity.AppUser;
 import pl.coderslab.charity.service.interfaces.DonationService;
 import pl.coderslab.charity.service.interfaces.InstitutionService;
 import pl.coderslab.charity.service.interfaces.UserService;
 
 import javax.validation.Valid;
-import java.util.Locale;
 
 
 @Controller
@@ -46,21 +44,21 @@ public class HomeController {
 
     @GetMapping("/register")
     public String register(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new AppUser());
         return "registration";
     }
 
     @PostMapping("/register")
-    public String saveUser(@Valid User user, BindingResult result, Model model) {
+    public String saveUser(@Valid AppUser appUser, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "registration";
         }
-        if(userService.existsByEmail(user.getEmail())){
+        if(userService.existsByEmail(appUser.getEmail())){
             result.rejectValue("email", "non.unique.email");
             return "registration";
         }
-        userService.saveUser(user);
-        model.addAttribute("loggedInUser", user.getFirstName());
+        userService.saveUser(appUser);
+        model.addAttribute("loggedInUser", appUser.getFirstName());
         return "registrationSuccess";
     }
 

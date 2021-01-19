@@ -4,7 +4,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.entity.AppUser;
 import pl.coderslab.charity.repository.UserRepository;
 import pl.coderslab.charity.service.interfaces.UserService;
 
@@ -24,19 +24,19 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User findById(long id) {
+    public AppUser findById(long id) {
         return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("There is no such User"));
     }
 
     @Override
-    public User saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+    public AppUser saveUser(AppUser appUser) {
+        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
+        return userRepository.save(appUser);
     }
 
     @Override
-    public void updateUser(User user) {
-        userRepository.save(user);
+    public void updateUser(AppUser appUser) {
+        userRepository.save(appUser);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllUsers() {
+    public List<AppUser> findAllUsers() {
         return userRepository.findAll();
     }
 
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByEmail(String email) {
+    public AppUser findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getCurrentUser() {
+    public AppUser getCurrentUser() {
         return userRepository.findByEmail(getPrincipal());
     }
 

@@ -15,7 +15,7 @@
 
 <section class="login-page">
     <h2>Rejestracja</h2>
-    <form:form modelAttribute="user">
+    <form:form modelAttribute="appUser">
         <div class="form-group">
             <form:input path="firstName" placeholder="Imię" required="true" />
             <form:errors path="firstName" class="formError" element="div" />

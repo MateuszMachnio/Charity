@@ -2,12 +2,13 @@ package pl.coderslab.charity.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.entity.AppUser;
 import pl.coderslab.charity.repository.UserRepository;
 
 import java.util.ArrayList;
@@ -25,18 +26,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional(readOnly=true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
-        if(user==null){
+        AppUser appUser = userRepository.findByEmail(email);
+        if(appUser ==null){
             throw new UsernameNotFoundException("Username not found");
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-                true, true, true, true, getGrantedAuthority(user));
+        return new User(appUser.getEmail(), appUser.getPassword(),
+                true, true, true, true, getGrantedAuthority(appUser));
     }
 
 
-    private List<GrantedAuthority> getGrantedAuthority(User user){
+    private List<GrantedAuthority> getGrantedAuthority(AppUser appUser){
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_"+user.getRole()));
+        authorities.add(new SimpleGrantedAuthority("ROLE_"+ appUser.getRole()));
         return authorities;
     }
 }

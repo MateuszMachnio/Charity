@@ -41,7 +41,7 @@
     </form>
 
     <c:if test="${param.error != null}">
-        <div>Jeśli nie masz jeszcze konta, proszę <a href="<c:url value="/user/registration"/>">zarejestruj się</a>.</div>
+        <div>Jeśli nie masz jeszcze konta, proszę <a href="<c:url value="/register"/>">zarejestruj się</a>.</div>
     </c:if>
 
 </section>

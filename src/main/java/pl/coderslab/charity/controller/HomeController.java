@@ -44,7 +44,7 @@ public class HomeController {
 
     @GetMapping("/register")
     public String register(Model model) {
-        model.addAttribute("user", new AppUser());
+        model.addAttribute("appUser", new AppUser());
         return "registration";
     }
 

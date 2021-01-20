@@ -34,6 +34,9 @@ public class AppUser {
     @Column(nullable = false)
     private String password;
 
+    @Transient
+    private String repeatPassword;
+
     private String role;
 
     @Column(name = "created_on")
@@ -100,6 +103,14 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
     }
 
     public String getRole() {

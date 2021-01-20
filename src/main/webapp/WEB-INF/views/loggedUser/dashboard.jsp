@@ -16,7 +16,7 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h1>
-                Witaj ${user}!<br/>
+                Witaj <c:if test="${role == 'ADMIN'}">administratorze </c:if>${user}!<br/>
                 Oddaj niechciane rzeczy w zaufane ręce.
             </h1>
         </div>

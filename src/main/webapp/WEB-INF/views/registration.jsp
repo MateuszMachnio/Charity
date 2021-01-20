@@ -32,6 +32,10 @@
             <form:input path="password" type="password" placeholder="Hasło" required="true" />
             <form:errors path="password" class="formError" element="div" />
         </div>
+        <div class="form-group">
+            <form:input path="repeatPassword" type="password" placeholder="Powtórz hasło" required="true" />
+            <form:errors path="repeatPassword" class="formError" element="div" />
+        </div>
 
         <div class="form-group form-group--buttons">
             <button class="btn" type="submit">Załóż konto</button>

@@ -57,6 +57,10 @@ public class HomeController {
             result.rejectValue("email", "non.unique.email");
             return "registration";
         }
+        if (!appUser.getPassword().equals(appUser.getRepeatPassword())) {
+            result.rejectValue("password", "non.identical.passwords");
+            return "registration";
+        }
         userService.saveUser(appUser);
         model.addAttribute("loggedInUser", appUser.getFirstName());
         return "registrationSuccess";

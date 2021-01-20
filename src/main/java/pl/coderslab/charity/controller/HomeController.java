@@ -54,17 +54,7 @@ public class HomeController {
 
     @PostMapping("/register")
     public String saveUser(@Valid AppUser appUser, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "registration";
-        }
-        if(userService.existsByEmail(appUser.getEmail())){
-            result.rejectValue("email", "non.unique.email");
-            return "registration";
-        }
-        if (!appUser.getPassword().equals(appUser.getRepeatPassword())) {
-            result.rejectValue("password", "non.identical.passwords");
-            return "registration";
-        }
+        if (AdminController.userHasErrors(appUser, result, userService)) return "registration";
         userService.saveUser(appUser);
         model.addAttribute("loggedInUser", appUser.getFirstName());
         return "registrationSuccess";

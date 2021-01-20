@@ -53,7 +53,6 @@ public class AppUser {
     @PrePersist
     public void setCreated() {
         this.created = LocalDateTime.now();
-        this.role = "USER";
     }
 
     public LocalDateTime getUpdated() {

@@ -11,6 +11,8 @@ public interface UserService {
 
     AppUser saveUser(AppUser appUser);
 
+    AppUser saveAdmin(AppUser appUser);
+
     void updateUser(AppUser appUser);
 
     void deleteUser(long id);

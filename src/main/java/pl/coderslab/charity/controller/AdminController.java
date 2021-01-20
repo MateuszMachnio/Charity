@@ -96,4 +96,21 @@ public class AdminController {
         return "admin/newAdmin";
     }
 
+    @PostMapping("/add")
+    public String addingAdmin(@Valid AppUser appUser, BindingResult result) {
+        if (userHasErrors(appUser, result, userService)) return "admin/newAdmin";
+        userService.saveAdmin(appUser);
+        return "redirect:admins";
+    }
+
+    static boolean userHasErrors(@Valid AppUser appUser, BindingResult result, UserService userService) {
+        if(userService.existsByEmail(appUser.getEmail())){
+            result.rejectValue("email", "non.unique.email");
+        }
+        if (appUser.getPassword() == null || !appUser.getPassword().equals(appUser.getRepeatPassword())) {
+            result.rejectValue("password", "non.identical.passwords");
+        }
+        return result.hasErrors();
+    }
+
 }

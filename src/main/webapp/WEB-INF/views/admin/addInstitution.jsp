@@ -25,7 +25,7 @@
                 <br />
                 <form:input cssStyle="width: 580px; margin-top: 5px" path="name" required="true" />
                 <form:errors path="name" cssClass="formError" /></p>
-            <p style="font-size: 18px"><b><form:label cssStyle="text-align: start" path="description">Opis fundacji: </form:label></b>
+            <p style="font-size: 18px"><b><form:label path="description">Opis fundacji: </form:label></b>
                 <br />
                 <form:input cssStyle="width: 580px; margin-top: 5px" path="description" required="true" />
                 <form:errors path="description" cssClass="formError"/></p>

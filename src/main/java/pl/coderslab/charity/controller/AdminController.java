@@ -71,4 +71,16 @@ public class AdminController {
         return "redirect:/admin/institutions";
     }
 
+    @PostMapping("/institution/delete")
+    public String deleteInstitution(@ModelAttribute("institutionId") long institutionId, Model model) {
+        model.addAttribute("institution", institutionService.findById(institutionId));
+        return "admin/confirmInstitutionDeleting";
+    }
+
+    @PostMapping("/institution/deleting")
+    public String deletingInstitution(Institution institution) {
+        institutionService.deleteInstitution(institution.getId());
+        return "redirect:/admin/institutions";
+    }
+
 }

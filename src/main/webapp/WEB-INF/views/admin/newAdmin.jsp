@@ -18,7 +18,7 @@
 
     <a class="return" style="margin-left: 510px" href="<c:url value="/admin/admins"/>">Powrót</a>
 
-    <form:form modelAttribute="admin">
+    <form:form modelAttribute="appUser">
 
         <div style="font-size: 18px; width: 750px">
             <p style="font-size: 18px"><b><form:label path="firstName">Imię: </form:label></b>
@@ -38,12 +38,12 @@
             </p>
             <p style="font-size: 18px"><b><form:label path="password">Hasło: </form:label></b>
                 <br />
-                <form:input cssStyle="width: 580px; margin-top: 5px" path="password" required="true" />
+                <form:input type="password" cssStyle="width: 580px; margin-top: 5px" path="password" required="true" />
                 <form:errors path="password" cssClass="formError"/>
             </p>
             <p style="font-size: 18px"><b><form:label path="repeatPassword">Powtórz hasło: </form:label></b>
                 <br />
-                <form:input cssStyle="width: 580px; margin-top: 5px" path="repeatPassword" required="true" />
+                <form:input type="password" cssStyle="width: 580px; margin-top: 5px" path="repeatPassword" required="true" />
                 <form:errors path="repeatPassword" cssClass="formError"/>
             </p>
             <div style="margin-bottom: 50px; text-align: center">

@@ -92,7 +92,7 @@ public class AdminController {
 
     @GetMapping("/add")
     public String addAdmin(Model model) {
-        model.addAttribute("admin", new AppUser());
+        model.addAttribute("appUser", new AppUser());
         return "admin/newAdmin";
     }
 

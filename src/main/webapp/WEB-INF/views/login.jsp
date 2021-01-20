@@ -18,10 +18,10 @@
     <form action="<c:url value="/login"/>" method="post">
 
         <c:if test="${param.error != null}">
-            <div class="formError" style="padding: 5px; padding-left: 15px">Nieprawidłowy login lub hasło.</div>
+            <div class="formError" style="padding: 5px 5px 5px 15px;">Nieprawidłowy login lub hasło.</div>
         </c:if>
         <c:if test="${param.logout != null}">
-            <div class="alert-success">Zostałeś pomyślnie wylogowany.</div>
+            <div class="alert-success" style="padding: 5px 5px 5px 15px; font-size: 16px">Zostałeś pomyślnie wylogowany.</div>
         </c:if>
 
         <div class="form-group">

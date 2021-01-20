@@ -9,11 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import pl.coderslab.charity.entity.AppUser;
 import pl.coderslab.charity.service.interfaces.DonationService;
 import pl.coderslab.charity.service.interfaces.InstitutionService;
 import pl.coderslab.charity.service.interfaces.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 
@@ -79,6 +83,15 @@ public class HomeController {
         } else {
             return "redirect:/logged-user/dashboard";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logoutPage (){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            SecurityContextHolder.getContext().setAuthentication(null);
+        }
+        return "redirect:/login?logout";
     }
 
     private boolean isCurrentAuthenticationAnonymous() {

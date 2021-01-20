@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.entity.AppUser;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.service.interfaces.InstitutionService;
 import pl.coderslab.charity.service.interfaces.UserService;
@@ -81,6 +82,18 @@ public class AdminController {
     public String deletingInstitution(Institution institution) {
         institutionService.deleteInstitution(institution.getId());
         return "redirect:/admin/institutions";
+    }
+
+    @GetMapping("/admins")
+    public String adminsList(Model model) {
+        model.addAttribute("admins", userService.findAllByRoleEquals("ADMIN"));
+        return "admin/admins";
+    }
+
+    @GetMapping("/add")
+    public String addAdmin(Model model) {
+        model.addAttribute("admin", new AppUser());
+        return "admin/newAdmin";
     }
 
 }

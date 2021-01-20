@@ -50,6 +50,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<AppUser> findAllByRoleEquals(String role) {
+        return userRepository.findAllByRoleEquals(role);
+    }
+
+    @Override
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }

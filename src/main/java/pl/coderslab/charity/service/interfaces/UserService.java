@@ -17,6 +17,8 @@ public interface UserService {
 
     List<AppUser> findAllUsers();
 
+    List<AppUser> findAllByRoleEquals(String role);
+
     boolean existsByEmail(String email);
 
     AppUser findByEmail(String email);

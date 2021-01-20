@@ -23,12 +23,15 @@
 
     <ul>
         <c:if test="${user == null}">
-        <li><a href="<c:url value="/"/>" class="btn btn--without-border active">Start</a></li>
-        <li><a href="<c:url value="/#steps"/>" class="btn btn--without-border">O co chodzi?</a></li>
-        <li><a href="<c:url value="/#about-us"/>" class="btn btn--without-border">O nas</a></li>
+            <li><a href="<c:url value="/"/>" class="btn btn--without-border active">Start</a></li>
+            <li><a href="<c:url value="/#steps"/>" class="btn btn--without-border">O co chodzi?</a></li>
+            <li><a href="<c:url value="/#about-us"/>" class="btn btn--without-border">O nas</a></li>
+        </c:if>
+        <c:if test="${role=='ADMIN'}">
+            <li><a href="<c:url value="/admin/admins"/>" class="btn btn--without-border">Administratorzy</a></li>
         </c:if>
         <c:if test="${user == null || role=='ADMIN'}">
-        <li><a href="<c:if test="${user == null}"><c:url value="/#help"/></c:if><c:if test="${role == 'ADMIN'}"><c:url value="/admin/institutions"/></c:if>" class="btn btn--without-border">Fundacje i organizacje</a></li>
+            <li><a href="<c:if test="${user == null}"><c:url value="/#help"/></c:if><c:if test="${role == 'ADMIN'}"><c:url value="/admin/institutions"/></c:if>" class="btn btn--without-border">Fundacje i organizacje</a></li>
         </c:if>
         <li><a href="<c:url value="/logged-user/donation/new"/>" class="btn btn--without-border">Przekaż dary</a></li>
         <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>

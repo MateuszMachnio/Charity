@@ -35,6 +35,9 @@ public class AppUser {
     private String password;
 
     @Transient
+    private String oldPassword;
+
+    @Transient
     private String repeatPassword;
 
     private String role;
@@ -102,6 +105,14 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
     }
 
     public String getRepeatPassword() {

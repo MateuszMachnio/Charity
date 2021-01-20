@@ -1,5 +1,6 @@
 package pl.coderslab.charity.controller;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,10 +21,12 @@ public class AdminController {
 
     private final InstitutionService institutionService;
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    public AdminController(InstitutionService institutionService, UserService userService) {
+    public AdminController(InstitutionService institutionService, UserService userService, PasswordEncoder passwordEncoder) {
         this.institutionService = institutionService;
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @ModelAttribute("user")
@@ -100,6 +103,33 @@ public class AdminController {
     public String addingAdmin(@Valid AppUser appUser, BindingResult result) {
         if (userHasErrors(appUser, result, userService)) return "admin/newAdmin";
         userService.saveAdmin(appUser);
+        return "redirect:admins";
+    }
+
+    @PostMapping("/edit")
+    public String editAdmin(long adminId, Model model) {
+        AppUser appUser = userService.findById(adminId);
+        appUser.setPassword("");
+        model.addAttribute("appUser", appUser);
+        return "admin/edit";
+    }
+
+    @PostMapping("/editing")
+    public String editingAdmin(@Valid AppUser appUser, BindingResult result) {
+        AppUser byId = userService.findById(appUser.getId());
+        if (!passwordEncoder.matches(appUser.getOldPassword(), byId.getPassword())) {
+            result.rejectValue("oldPassword", "non.valid.password");
+        }
+        if(userService.existsByEmail(appUser.getEmail()) && !byId.getEmail().equals(appUser.getEmail())){
+            result.rejectValue("email", "non.unique.email");
+        }
+        if (appUser.getPassword() == null || !appUser.getPassword().equals(appUser.getRepeatPassword())) {
+            result.rejectValue("password", "non.identical.passwords");
+        }
+        if (result.hasErrors()) {
+            return "admin/edit";
+        }
+        userService.updateUser(appUser);
         return "redirect:admins";
     }
 

@@ -56,4 +56,19 @@ public class AdminController {
         return "redirect:/admin/institutions";
     }
 
+    @PostMapping("/institution/edit")
+    public String editInstitution(@ModelAttribute("institutionId") long institutionId, Model model) {
+        model.addAttribute("institution", institutionService.findById(institutionId));
+        return "admin/editInstitution";
+    }
+
+    @PostMapping("/institution/editing")
+    public String editingInstitution(@Valid Institution institution, BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/editInstitution";
+        }
+        institutionService.updateInstitution(institution);
+        return "redirect:/admin/institutions";
+    }
+
 }

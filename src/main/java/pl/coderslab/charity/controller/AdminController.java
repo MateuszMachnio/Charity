@@ -1,18 +1,22 @@
 package pl.coderslab.charity.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.service.interfaces.InstitutionService;
 import pl.coderslab.charity.service.interfaces.UserService;
 
 @Controller
-@RequestMapping("logged-user")
-public class LoggedUserController {
+@RequestMapping("/admin")
+public class AdminController {
 
+    private final InstitutionService institutionService;
     private final UserService userService;
 
-    public LoggedUserController(UserService userService) {
+    public AdminController(InstitutionService institutionService, UserService userService) {
+        this.institutionService = institutionService;
         this.userService = userService;
     }
 
@@ -26,8 +30,10 @@ public class LoggedUserController {
         return userService.getCurrentUser().getRole();
     }
 
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "loggedUser/dashboard";
+    @GetMapping("/institutions")
+    public String institutions(Model model) {
+        model.addAttribute("institutions", institutionService.findAllInstitutions());
+        return "admin/institutions";
     }
+
 }

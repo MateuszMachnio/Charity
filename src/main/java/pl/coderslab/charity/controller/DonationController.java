@@ -49,6 +49,11 @@ public class DonationController {
         return userService.getCurrentUser().getFirstName();
     }
 
+    @ModelAttribute("role")
+    public String roleName() {
+        return userService.getCurrentUser().getRole();
+    }
+
     @GetMapping("/new")
     public String newDonation(Model model) {
         model.addAttribute("donation", new Donation());

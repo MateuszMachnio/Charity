@@ -27,14 +27,12 @@ public class HomeController {
     private final InstitutionService institutionService;
     private final DonationService donationService;
     private final UserService userService;
-    private final MessageSource messageSource;
     private final AuthenticationTrustResolver authenticationTrustResolver;
 
-    public HomeController(InstitutionService institutionService, DonationService donationService, UserService userService, MessageSource messageSource, AuthenticationTrustResolver authenticationTrustResolver) {
+    public HomeController(InstitutionService institutionService, DonationService donationService, UserService userService, AuthenticationTrustResolver authenticationTrustResolver) {
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.userService = userService;
-        this.messageSource = messageSource;
         this.authenticationTrustResolver = authenticationTrustResolver;
     }
 

@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .and()
                 .exceptionHandling()
-                .accessDeniedPage("/user/access-denied");
+                .accessDeniedPage("/access-denied");
     }
 
     @Bean

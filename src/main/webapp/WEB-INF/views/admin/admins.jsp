@@ -39,11 +39,13 @@
                         <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
                         <input type="submit" class="button" value="edytuj">
                     </form>
-                    <form method="post" action="<c:url value="/admin/delete"/>">
-                        <input type="hidden" name="adminId" value="${admin.id}" />
-                        <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
-                        <input type="submit" class="button-danger" value="usuń">
-                    </form>
+                    <c:if test="${adminEmail != admin.email}">
+                        <form method="post" action="<c:url value="/admin/delete"/>">
+                            <input type="hidden" name="adminId" value="${admin.id}" />
+                            <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
+                            <input type="submit" class="button-danger" value="usuń">
+                        </form>
+                    </c:if>
                 </td>
             </tr>
         </table>

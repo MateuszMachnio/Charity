@@ -89,6 +89,7 @@ public class AdminController {
 
     @GetMapping("/admins")
     public String adminsList(Model model) {
+        model.addAttribute("adminEmail", userService.getPrincipal());
         model.addAttribute("admins", userService.findAllByRoleEquals("ADMIN"));
         return "admin/admins";
     }
@@ -146,6 +147,9 @@ public class AdminController {
     @PostMapping("/delete")
     public String deleteAdmin(long adminId, Model model) {
         AppUser appUser = userService.findById(adminId);
+        if (userService.getCurrentUser().equals(appUser)) {
+            return "admin/deleteError";
+        }
         model.addAttribute("appUser", appUser);
         return "admin/delete";
     }

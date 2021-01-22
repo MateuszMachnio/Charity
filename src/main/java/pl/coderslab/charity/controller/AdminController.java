@@ -143,4 +143,17 @@ public class AdminController {
         return result.hasErrors();
     }
 
+    @PostMapping("/delete")
+    public String deleteAdmin(long adminId, Model model) {
+        AppUser appUser = userService.findById(adminId);
+        model.addAttribute("appUser", appUser);
+        return "admin/delete";
+    }
+
+    @PostMapping("/deleting")
+    public String deletingAdmin(long adminId, Model model) {
+        userService.deleteUser(adminId);
+        return "redirect:admins";
+    }
+
 }

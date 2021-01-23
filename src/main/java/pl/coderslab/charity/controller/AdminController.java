@@ -167,6 +167,7 @@ public class AdminController {
     @GetMapping("/users")
     public String usersList(Model model) {
         model.addAttribute("users", userService.findAllByRoleEquals("USER"));
+        model.addAttribute("blocked", userService.findAllByRoleEquals("BLOCKED"));
         return "admin/users";
     }
 
@@ -187,5 +188,14 @@ public class AdminController {
         userService.updateUser(appUser);
         return "redirect:/admin/users";
     }
+
+    @PostMapping("/user/block")
+    public String blockUser(long userId) {
+        AppUser appUser = userService.findById(userId);
+        appUser.setRole("BLOCKED");
+        userService.updateUser(appUser);
+        return "redirect:/admin/users";
+    }
+
 
 }

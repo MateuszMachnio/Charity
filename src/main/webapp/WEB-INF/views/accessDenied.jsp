@@ -5,7 +5,7 @@
 <head>
     <%@include file="constantParts/head.jsp"%>
 
-    <title>Potwierdzenie rejestracji</title>
+    <title>Błąd autoryzacji</title>
 </head>
 <body>
 <header class="header--form-page">
@@ -13,7 +13,7 @@
 
     <div class="slogan container container--90">
         <h2>
-            <strong>${loggedInUser}</strong>, niestety nie masz uprawnień do odwiedzenia tej strony.
+            <strong>${loggedInUser}</strong>, niestety nie masz uprawnień do odwiedzenia tej strony. Możliwe również że Twoje konto jest zablokowane.
         </h2>
     </div>
 </header>

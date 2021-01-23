@@ -37,6 +37,11 @@
                         <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
                         <input type="submit" class="button" value="edytuj">
                     </form>
+                    <form method="post" action="<c:url value="/admin/user/block"/>">
+                        <input type="hidden" name="userId" value="${user.id}" />
+                        <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
+                        <input type="submit" class="button" value="zablokuj">
+                    </form>
                     <form method="post" action="<c:url value="/admin/user/delete"/>">
                         <input type="hidden" name="userId" value="${user.id}" />
                         <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />

@@ -160,4 +160,10 @@ public class AdminController {
         return "redirect:admins";
     }
 
+    @GetMapping("/users")
+    public String usersList(Model model) {
+        model.addAttribute("users", userService.findAllByRoleEquals("USER"));
+        return "admin/users";
+    }
+
 }

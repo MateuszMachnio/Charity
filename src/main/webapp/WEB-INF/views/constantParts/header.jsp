@@ -28,6 +28,7 @@
             <li><a href="<c:url value="/#about-us"/>" class="btn btn--without-border">O nas</a></li>
         </c:if>
         <c:if test="${role=='ADMIN'}">
+            <li><a href="<c:url value="/admin/users"/>" class="btn btn--without-border">Użytkownicy</a></li>
             <li><a href="<c:url value="/admin/admins"/>" class="btn btn--without-border">Administratorzy</a></li>
         </c:if>
         <c:if test="${user == null || role=='ADMIN'}">

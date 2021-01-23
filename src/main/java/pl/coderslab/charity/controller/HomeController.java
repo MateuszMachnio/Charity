@@ -52,7 +52,7 @@ public class HomeController {
 
     @PostMapping("/register")
     public String saveUser(@Valid AppUser appUser, BindingResult result, Model model) {
-        if (AdminController.userHasErrors(appUser, result, userService)) return "registration";
+        if (AdminController.checkIfAddingUserHasErrors(appUser, result, userService)) return "registration";
         userService.saveUser(appUser);
         model.addAttribute("loggedInUser", appUser.getFirstName());
         return "registrationSuccess";

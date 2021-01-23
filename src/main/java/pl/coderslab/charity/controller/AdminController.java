@@ -102,7 +102,7 @@ public class AdminController {
 
     @PostMapping("/add")
     public String addingAdmin(@Valid AppUser appUser, BindingResult result) {
-        if (userHasErrors(appUser, result, userService)) return "admin/newAdmin";
+        if (checkIfAddingUserHasErrors(appUser, result, userService)) return "admin/newAdmin";
         userService.saveAdmin(appUser);
         return "redirect:admins";
     }
@@ -117,6 +117,15 @@ public class AdminController {
 
     @PostMapping("/editing")
     public String editingAdmin(@Valid AppUser appUser, BindingResult result) {
+        checkIfUserEditingHasErrors(appUser, result);
+        if (result.hasErrors()) {
+            return "admin/edit";
+        }
+        userService.updateUser(appUser);
+        return "redirect:admins";
+    }
+
+    private void checkIfUserEditingHasErrors(@Valid AppUser appUser, BindingResult result) {
         AppUser byId = userService.findById(appUser.getId());
         if (!passwordEncoder.matches(appUser.getOldPassword(), byId.getPassword())) {
             result.rejectValue("oldPassword", "non.valid.password");
@@ -127,14 +136,9 @@ public class AdminController {
         if (appUser.getPassword() == null || !appUser.getPassword().equals(appUser.getRepeatPassword())) {
             result.rejectValue("password", "non.identical.passwords");
         }
-        if (result.hasErrors()) {
-            return "admin/edit";
-        }
-        userService.updateUser(appUser);
-        return "redirect:admins";
     }
 
-    static boolean userHasErrors(@Valid AppUser appUser, BindingResult result, UserService userService) {
+    static boolean checkIfAddingUserHasErrors(@Valid AppUser appUser, BindingResult result, UserService userService) {
         if(userService.existsByEmail(appUser.getEmail())){
             result.rejectValue("email", "non.unique.email");
         }
@@ -164,6 +168,24 @@ public class AdminController {
     public String usersList(Model model) {
         model.addAttribute("users", userService.findAllByRoleEquals("USER"));
         return "admin/users";
+    }
+
+    @PostMapping("/user/edit")
+    public String editUser(long userId, Model model) {
+        AppUser appUser = userService.findById(userId);
+        appUser.setPassword("");
+        model.addAttribute("appUser", appUser);
+        return "admin/userEdit";
+    }
+
+    @PostMapping("/user/editing")
+    public String editingUser(@Valid AppUser appUser, BindingResult result) {
+        checkIfUserEditingHasErrors(appUser, result);
+        if (result.hasErrors()) {
+            return "admin/userEdit";
+        }
+        userService.updateUser(appUser);
+        return "redirect:/admin/users";
     }
 
 }

@@ -19,7 +19,7 @@
         <table class="tableData" style="width: 1200px">
             <tr>
                 <th style="width: 10%">Imię</th>
-                <th style="width: 15%">Nazwisko</th>
+                <th style="width: 10%">Nazwisko</th>
                 <th style="width: 20%">Mail</th>
                 <th style="width: 20%">Konto stworzono</th>
                 <th style="width: 20%">Edytowano</th>
@@ -32,12 +32,12 @@
                 <td>${user.created}</td>
                 <td>${user.updated}</td>
                 <td>
-                    <form method="post" action="<c:url value="/user/edit"/>">
+                    <form method="post" action="<c:url value="/admin/user/edit"/>">
                         <input type="hidden" name="userId" value="${user.id}" />
                         <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
                         <input type="submit" class="button" value="edytuj">
                     </form>
-                    <form method="post" action="<c:url value="/user/delete"/>">
+                    <form method="post" action="<c:url value="/admin/user/delete"/>">
                         <input type="hidden" name="userId" value="${user.id}" />
                         <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
                         <input type="submit" class="button-danger" value="usuń">

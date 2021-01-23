@@ -197,5 +197,12 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
+    @PostMapping("/user/unlock")
+    public String unlockUser(long blockedUserId) {
+        AppUser appUser = userService.findById(blockedUserId);
+        appUser.setRole("USER");
+        userService.updateUser(appUser);
+        return "redirect:/admin/users";
+    }
 
 }

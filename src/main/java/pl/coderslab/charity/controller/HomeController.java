@@ -1,6 +1,5 @@
 package pl.coderslab.charity.controller;
 
-import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,15 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import pl.coderslab.charity.entity.AppUser;
 import pl.coderslab.charity.service.interfaces.DonationService;
 import pl.coderslab.charity.service.interfaces.InstitutionService;
 import pl.coderslab.charity.service.interfaces.UserService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 
@@ -56,12 +51,6 @@ public class HomeController {
         userService.saveUser(appUser);
         model.addAttribute("loggedInUser", appUser.getFirstName());
         return "registrationSuccess";
-    }
-
-    @GetMapping("/access-denied")
-    public String accessDeniedPage(Model model) {
-        model.addAttribute("loggedInUser", userService.getCurrentUser().getFirstName());
-        return "accessDenied";
     }
 
     @GetMapping("/login")

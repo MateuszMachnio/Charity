@@ -13,7 +13,10 @@
 </header>
 
 <section class="login-page">
-    <h2>Lista użytkowników</h2>
+
+    <c:if test="${users.size() > 0}">
+        <h2>Lista użytkowników</h2>
+    </c:if>
 
     <c:forEach items="${users}" var="user">
         <table class="tableData" style="width: 1200px">

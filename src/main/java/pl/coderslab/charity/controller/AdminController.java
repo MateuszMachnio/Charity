@@ -159,7 +159,7 @@ public class AdminController {
     }
 
     @PostMapping("/deleting")
-    public String deletingAdmin(long adminId, Model model) {
+    public String deletingAdmin(long adminId) {
         userService.deleteUser(adminId);
         return "redirect:admins";
     }
@@ -202,6 +202,19 @@ public class AdminController {
         AppUser appUser = userService.findById(blockedUserId);
         appUser.setRole("USER");
         userService.updateUser(appUser);
+        return "redirect:/admin/users";
+    }
+
+    @PostMapping("/user/delete")
+    public String deleteUser(long userId, Model model) {
+        AppUser appUser = userService.findById(userId);
+        model.addAttribute("appUser", appUser);
+        return "admin/deleteUser";
+    }
+
+    @PostMapping("/user/deleting")
+    public String deletingUser(long userId) {
+        userService.deleteUser(userId);
         return "redirect:/admin/users";
     }
 

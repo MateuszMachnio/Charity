@@ -44,4 +44,10 @@ public class LoggedUserController {
         return "loggedUser/profile";
     }
 
+    @GetMapping("/edit")
+    public String edit(Model model) {
+        model.addAttribute("appUser", userService.getCurrentUser());
+        return "loggedUser/edit";
+    }
+
 }

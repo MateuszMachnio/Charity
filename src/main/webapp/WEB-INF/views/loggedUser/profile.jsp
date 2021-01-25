@@ -16,8 +16,7 @@
 <section class="login-page">
     <h2>Twoje dane</h2>
 
-    <a class="return" style="margin-left: 510px" href="<c:url value="/admin/users"/>">Powrót</a>
-    <form action="<c:url value="/admin/user/deleting"/>" style="width: 400px" method="post">
+    <form action="<c:url value="/logged-user/edit"/>" style="width: 400px">
         <div style="font-size: 18px; width: 400px">
             <p style="font-size: 18px"><b>Imię: ${appUser.firstName}</b>
                 <br />
@@ -30,10 +29,8 @@
             </p>
 
             <div style="margin-bottom: 50px; text-align: center">
-                <input type="hidden" name="userId" value="${appUser.id}" />
                 <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
-                <input type="submit" class="delete" value="Usuń użytkownika">
-                <a class="return" href="<c:url value="/admin/users"/>">Anuluj</a>
+                <input type="submit" class="submit" value="Edytuj dane">
             </div>
         </div>
     </form>

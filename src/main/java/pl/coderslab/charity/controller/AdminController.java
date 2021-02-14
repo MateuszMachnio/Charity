@@ -88,7 +88,8 @@ public class AdminController {
     }
 
     @GetMapping("/admins")
-    public String adminsList(Model model) {
+    public String adminsList(Model model, @ModelAttribute("user") String user) {
+        model.addAttribute("user", user);
         model.addAttribute("adminEmail", userService.getPrincipal());
         model.addAttribute("admins", userService.findAllByRoleEquals("ADMIN"));
         return "admin/admins";
@@ -117,7 +118,7 @@ public class AdminController {
 
     @PostMapping("/editing")
     public String editingAdmin(@Valid AppUser appUser, BindingResult result) {
-        checkIfUserEditingHasErrors(appUser, result);
+        checkIfUserEditingHasErrors(appUser, result, userService, passwordEncoder);
         if (result.hasErrors()) {
             return "admin/edit";
         }
@@ -125,7 +126,7 @@ public class AdminController {
         return "redirect:admins";
     }
 
-    private void checkIfUserEditingHasErrors(@Valid AppUser appUser, BindingResult result) {
+    static void checkIfUserEditingHasErrors(@Valid AppUser appUser, BindingResult result, UserService userService, PasswordEncoder passwordEncoder) {
         AppUser byId = userService.findById(appUser.getId());
         if (!passwordEncoder.matches(appUser.getOldPassword(), byId.getPassword())) {
             result.rejectValue("oldPassword", "non.valid.password");
@@ -181,7 +182,7 @@ public class AdminController {
 
     @PostMapping("/user/editing")
     public String editingUser(@Valid AppUser appUser, BindingResult result) {
-        checkIfUserEditingHasErrors(appUser, result);
+        checkIfUserEditingHasErrors(appUser, result, userService, passwordEncoder);
         if (result.hasErrors()) {
             return "admin/userEdit";
         }

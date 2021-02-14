@@ -1,20 +1,34 @@
 package pl.coderslab.charity.controller;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.entity.AppUser;
 import pl.coderslab.charity.service.interfaces.UserService;
+
+import javax.validation.Valid;
+import java.util.Collection;
 
 @Controller
 @RequestMapping("logged-user")
 public class LoggedUserController {
 
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    public LoggedUserController(UserService userService) {
+    public LoggedUserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @ModelAttribute("user")
@@ -46,8 +60,20 @@ public class LoggedUserController {
 
     @GetMapping("/edit")
     public String edit(Model model) {
-        model.addAttribute("appUser", userService.getCurrentUser());
+        AppUser currentUser = userService.getCurrentUser();
+        currentUser.setPassword("");
+        model.addAttribute("appUser", currentUser);
         return "loggedUser/edit";
+    }
+
+    @PostMapping("/editing")
+    public String editing(@Valid AppUser appUser, BindingResult result) {
+        AdminController.checkIfUserEditingHasErrors(appUser, result, userService, passwordEncoder);
+        if (result.hasErrors()) {
+            return "loggedUser/edit";
+        }
+        userService.updateUser(appUser);
+        return "loggedUser/userEditingConfirmation";
     }
 
 }

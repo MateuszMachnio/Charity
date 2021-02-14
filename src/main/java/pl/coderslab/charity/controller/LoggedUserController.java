@@ -73,6 +73,11 @@ public class LoggedUserController {
             return "loggedUser/edit";
         }
         userService.updateUser(appUser);
+        AppUser byId = userService.findById(appUser.getId());
+        Collection<SimpleGrantedAuthority> nowAuthorities =(Collection<SimpleGrantedAuthority>)SecurityContextHolder
+                .getContext().getAuthentication().getAuthorities();
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(byId.getEmail(), byId.getPassword(), nowAuthorities);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return "loggedUser/userEditingConfirmation";
     }
 

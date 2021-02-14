@@ -13,7 +13,7 @@
 
     <div class="slogan container container--90">
         <h2>
-            <strong>${loggedInUser}</strong>, niestety nie masz uprawnień do odwiedzenia tej strony. Możliwe również że Twoje konto jest zablokowane.
+            <strong>${user}</strong>, niestety nie masz uprawnień do odwiedzenia tej strony. Możliwe również że Twoje konto jest zablokowane.
         </h2>
     </div>
 </header>
